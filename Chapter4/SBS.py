@@ -19,3 +19,25 @@ class SBS(object):
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=self.test_size, random_state=self.random_state)
         dim = X_train.shape[1]
+        self.indices_=tuple(range(dim))
+        self.subsets_=[self.indices_]
+        score = self._calc_score(X_train,y_train,X_test,y_test,self.indices_)
+        self.scores=[score]
+        while dim > self.k_features:
+            scores=[]
+            subset=[]
+            for p in combinations(self.indices_,r=dim-1):
+                score=self._calc_score(X_train,y_train,X_test,y_test,p)
+                scores.append(score)
+                subset.append(p)
+
+            best=np.argmax(scores)
+            self.indices_=subset[best]
+            self.subsets_.append(self.indices_)
+            dim-=1 
+
+    def transform(self,X):
+        pass
+
+    def _calc_score(self,X_train,y_train,X_test,y_test,indices):
+        pass

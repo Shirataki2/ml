@@ -1,4 +1,4 @@
-from Wine import getWineRawData, getWineData
+from Wine import getWineData,getWineRawData
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 import numpy as np

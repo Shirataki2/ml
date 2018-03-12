@@ -36,7 +36,7 @@ def rbf_kernel_pca(X, gamma, n_components):
 
 
 def project_x(x_new, X, gamma, alphas, lambdas):
-    pair_dist = np.array([np.sum(x_new - row) ** 2 for row in X])
+    pair_dist = np.array([np.sum((x_new - row) ** 2) for row in X])
     k = np.exp(- gamma * pair_dist)
     return k.dot(alphas/lambdas)
 

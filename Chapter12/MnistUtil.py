@@ -23,10 +23,10 @@ def load_mnist(path, kind='train'):
 if __name__ == '__main__':
     X_train, y_train = load_mnist('mnist', kind='train')
     print('Rows: %d, columns: %d' % (X_train.shape[0], X_train.shape[1]))
-    fig, ax = plt.subplots(nrows=2, ncols=5, sharex=True, sharey=True)
+    fig, ax = plt.subplots(nrows=1, ncols=6, sharex=True, sharey=True)
     ax = ax.flatten()
-    for i in range(10):
-        img = X_train[y_train == i][0].reshape(28, 28)
+    for i, j in enumerate([1, 1, 4, 5, 1, 4]):
+        img = X_train[y_train == j][i].reshape(28, 28)
         ax[i].imshow(img, cmap='Greys', interpolation='nearest')
 
     ax[0].set_xticks([])
